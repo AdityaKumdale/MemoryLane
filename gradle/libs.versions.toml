@@ -17,6 +17,7 @@ kotlin = "2.0.20"
 
 #Room
 androidx-room = "2.7.0-alpha01"
+kotlinxSerializationJson = "1.7.1"
 ksp = "1.9.23-1.0.19"
 sqlite = "2.5.0-SNAPSHOT"
 pagingComposeAndroid = "3.3.0-rc01"
@@ -42,6 +43,7 @@ androidx-paging-compose-android = { group = "androidx.paging", name = "paging-co
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
 androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
 
 [plugins]

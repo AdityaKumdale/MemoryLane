@@ -55,6 +55,8 @@ kotlin {
             implementation(libs.androidx.paging.common)
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
+
+            implementation(libs.kotlinx.serialization.json)
         }
     }
 }

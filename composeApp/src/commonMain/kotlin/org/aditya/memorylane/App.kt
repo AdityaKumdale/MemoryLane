@@ -10,15 +10,19 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.room.RoomDatabase
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import memorylane.composeapp.generated.resources.Res
 import memorylane.composeapp.generated.resources.compose_multiplatform
+import org.aditya.memorylane.memoryFeature.data.repository.AppDatabase
 
 @Composable
 @Preview
-fun App() {
+fun App(
+    databaseBuilder: RoomDatabase.Builder<AppDatabase>,
+) {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
