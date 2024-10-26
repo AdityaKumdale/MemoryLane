@@ -1,6 +1,12 @@
 package org.aditya.memorylane
 
+import android.app.Application
 import android.os.Build
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import org.aditya.memorylane.memoryFeature.data.repository.MemoryDatabase
+import org.aditya.memorylane.utils.DB_Name
+import org.koin.mp.KoinPlatform
 
 class AndroidPlatform : Platform {
     override val name: String = "Android ${Build.VERSION.SDK_INT}"
@@ -9,14 +15,13 @@ class AndroidPlatform : Platform {
 actual fun getPlatform(): Platform = AndroidPlatform()
 
 
-actual class Uri(private val androidUri: android.net.Uri) {
 
-    actual val scheme: String get() = androidUri.scheme ?: ""
-    actual val host: String get() = androidUri.host ?: ""
-    actual val path: String get() = androidUri.path ?: ""
-    actual val fullUri: String get() = androidUri.toString() // Convert to string for Room compatibility
 
-    actual companion object {
-        actual fun fromString(uriString: String): Uri = Uri(android.net.Uri.parse(uriString))
-    }
+actual fun getDatabaseBuilder(): RoomDatabase.Builder<MemoryDatabase> {
+    val appContext = KoinPlatform.getKoin().get<Application>()
+    val dbFile = appContext.getDatabasePath(DB_Name)
+    return Room.databaseBuilder<MemoryDatabase>(
+        context = appContext,
+        name = dbFile.absolutePath
+    )
 }

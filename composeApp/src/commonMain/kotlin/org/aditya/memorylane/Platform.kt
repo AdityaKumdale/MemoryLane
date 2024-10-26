@@ -1,19 +1,13 @@
 package org.aditya.memorylane
 
+import androidx.room.RoomDatabase
+import org.aditya.memorylane.memoryFeature.data.repository.MemoryDatabase
+
 interface Platform {
     val name: String
 }
 
 expect fun getPlatform(): Platform
 
-expect class Uri {
 
-    val scheme: String
-    val host: String
-    val path: String
-    val fullUri: String // Full URI as a string for conversions
-
-    companion object {
-        fun fromString(uriString: String): Uri
-    }
-}
+expect fun getDatabaseBuilder() : RoomDatabase.Builder<MemoryDatabase>

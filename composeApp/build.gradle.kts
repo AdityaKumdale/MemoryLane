@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
 
+    alias(libs.plugins.kotlinx.serialization)
+
     // Room
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
@@ -40,6 +42,10 @@ kotlin {
 
             // Room
             implementation(libs.androidx.room.paging)
+
+            // Koin
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -57,6 +63,19 @@ kotlin {
             implementation(libs.sqlite.bundled)
 
             implementation(libs.kotlinx.serialization.json)
+
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
+            //Coil
+            implementation(libs.coil.compose.core)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.mp)
+            implementation(libs.coil.network.ktor)
+
+            // Koin
+            api(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.composeVM)
         }
     }
 }
@@ -86,11 +105,18 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+
 }
 
 dependencies {
     debugImplementation(compose.uiTooling)
 }
+//tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
+//    if (name != "kspCommonMainKotlinMetadata" ) {
+//        dependsOn("kspCommonMainKotlinMetadata")
+//    }
+//}
 
 dependencies {
     // Room
@@ -98,6 +124,8 @@ dependencies {
     add("kspIosSimulatorArm64", libs.androidx.room.compiler)
     add("kspIosX64", libs.androidx.room.compiler)
     add("kspIosArm64", libs.androidx.room.compiler)
+
+    //add("kspCommonMainMetadata", libs.androidx.room.compiler)
 }
 
 room {
